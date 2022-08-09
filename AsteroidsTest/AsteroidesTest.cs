@@ -15,7 +15,7 @@ namespace AsteroidsTest
         public void getDays7()
         {
 
-            AsteroideController controller = new AsteroideController();
+           AsteroideController controller = new AsteroideController();
             AsteroideParameters parameters = new AsteroideParameters();
             parameters.days = 7;
 
@@ -24,9 +24,11 @@ namespace AsteroidsTest
             // Assert
             var okObjectResult = result as OkObjectResult;
             Assert.IsNotNull(okObjectResult);
-            var asteroides = okObjectResult.Value as IEnumerable<AsteroideReturn>;
-            Assert.IsNotNull(asteroides);
-            Assert.AreEqual(asteroides.Select(g => g.Nombre).Count(), 6);
+
+            string? value = okObjectResult.Value as string;
+            Assert.IsNotNull(value);
+
+            Assert.AreEqual(Regex.Matches(value, "Nombre").Count, 6);
 
         }
 
@@ -34,7 +36,7 @@ namespace AsteroidsTest
         public void getDays1()
         {
 
-            AsteroideController controller = new AsteroideController();
+           AsteroideController controller = new AsteroideController();
             AsteroideParameters parameters = new AsteroideParameters();
             parameters.days = 1;
 
@@ -43,9 +45,11 @@ namespace AsteroidsTest
             // Assert
             var okObjectResult = result as OkObjectResult;
             Assert.IsNotNull(okObjectResult);
-            var asteroides = okObjectResult.Value as IEnumerable<AsteroideReturn>;
-            //Assert.IsNotNull(asteroides);
-            Assert.AreEqual(asteroides.Select(g => g.Nombre).Count(), 0);
+
+            string? value = okObjectResult.Value as string;
+            Assert.IsNotNull(value);
+
+            Assert.AreEqual(Regex.Matches(value, "Nombre").Count, 0);
 
         }
 
